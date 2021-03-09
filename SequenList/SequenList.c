@@ -49,38 +49,42 @@ SqList *initial_SqList() {
 }
 
 int cmp(const void*a, const void*b) {
-    return *(int*)a - *(int*)b;
+	return *(int*)a - *(int*)b;
 }
 
 boolean containsDuplicate(SqList *pointer, int numsSize){
-    int i, j = 0,len = numsSize;
-    if (pointer -> end == -1) {
-	    printf("\033[31m[Error] This table is empty!\n\033[37m");
-	    return false;
-    }
-    boolean tf = true;
-    if(numsSize == 0 || numsSize == 1) {
-        return false;
-    }
-    if(numsSize == 2) {
-        if(pointer -> data[0] == pointer -> data[1]) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    qsort(pointer -> data, numsSize, sizeof(int), cmp);
-    for(i = 0; i < numsSize; i++) {
-        if(pointer -> data[i] != pointer -> data[j]) {
-            pointer -> data[++j] = pointer -> data[i];
-        }
-    }
-    if(len > j + 1) {
-        tf = true;
-    } else {
-        tf = false;
-    }
-    return tf;
+	int i, j = 0,len = numsSize;
+	if (numsSize == -1) {
+		printf("\033[31m[Error] This table is empty!\n\033[37m");
+		return false;
+	}
+	int nums[MAX];
+	for (int t = 0; t <= numsSize; t++) {
+		nums[t] = pointer -> data[t];
+	}
+	boolean tf = true;
+	if(numsSize == 0 || numsSize == 1) {
+		return false;
+	}
+	if(numsSize == 2) {
+		if(nums[0] == nums[1]) {
+            		return true;
+        	} else {
+        		return false;
+        	}
+    	}
+	qsort(nums, numsSize + 1, sizeof(int), cmp);
+	for(i = 0; i <= numsSize; i++) {
+        	if(nums[i] != nums[j]) {
+			nums[++j] = nums[i];
+        	}
+    	}
+    	if(len > j) {
+        	tf = true;
+    	} else {
+        	tf = false;
+    	}
+    	return tf;
 }
 
 // 输出顺序表
