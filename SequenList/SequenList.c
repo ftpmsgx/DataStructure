@@ -5,6 +5,10 @@
 
 #define MAX 1024
 
+#define boolean int
+#define true 1
+#define false 0
+
 // 自定义结构体类型
 typedef struct {
 	// 数组定义，最长1024
@@ -42,6 +46,41 @@ SqList *initial_SqList() {
 	}
 	// 返回指针
 	return pointer;
+}
+
+int cmp(const void*a, const void*b) {
+    return *(int*)a - *(int*)b;
+}
+
+boolean containsDuplicate(SqList *pointer, int numsSize){
+    int i, j = 0,len = numsSize;
+    if (pointer -> end == -1) {
+	    printf("\033[31m[Error] This table is empty!\n\033[37m");
+	    return false;
+    }
+    boolean tf = true;
+    if(numsSize == 0 || numsSize == 1) {
+        return false;
+    }
+    if(numsSize == 2) {
+        if(pointer -> data[0] == pointer -> data[1]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    qsort(pointer -> data, numsSize, sizeof(int), cmp);
+    for(i = 0; i < numsSize; i++) {
+        if(pointer -> data[i] != pointer -> data[j]) {
+            pointer -> data[++j] = pointer -> data[i];
+        }
+    }
+    if(len > j + 1) {
+        tf = true;
+    } else {
+        tf = false;
+    }
+    return tf;
 }
 
 // 输出顺序表
@@ -211,9 +250,10 @@ int main() {
 		printf("4. Reinitializes Order Table\n");
 		printf("5. Query a Number\n");
 		printf("6. Delete a Number\n");
-		printf("7. Exit\n");
+		printf("7. Checking for duplicate elements\n");
+		printf("8. Exit\n");
 		printf("-------------------------------\n");
-		printf("Enter 1 to 7:");
+		printf("Enter 1 to 8:");
 		scanf("%d", &select);
 		switch (select) {
 			case 1:
@@ -248,6 +288,13 @@ int main() {
 				delete_SqList(pointer);
 				break;
 			case 7:
+				if (!containsDuplicate(pointer, pointer -> end)) {
+					printf("\033[32m[OK] No repeating elements.\n\033[37m");
+				} else {
+					printf("\033[33m[Warning] Contains repeating elements.\n\033[37m");
+				}
+				break;
+			case 8:
 				printf("The program has exited normally.(Status Code : 0)\n");
 				exit(0);
 			default:
