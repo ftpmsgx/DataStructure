@@ -110,6 +110,22 @@ boolean insert_SingleList(singleList NewPointer, int locate, int number) {
 		NewNode = (node *)malloc(sizeof(node));
 		// Insert number to data
 		NewNode -> data = number;
+		// Point the pointer of newnode to the pointer of pointer
+		//
+		//Sketch Map:
+		//
+		// NewNode0 ---> NewNode ---> NewNode1
+		//				^
+		//				|
+		//				pointer
+		//
+		//
+		//
+                // NewNode0 ---> NewNode      NewNode1
+		// 		    |             ^
+                //                  |             |
+                //                  |             |
+                //                  |------>   pointer
 		NewNode -> next = pointer -> next;
 		// Point pointer to NewNode
 		pointer -> next = NewNode;
