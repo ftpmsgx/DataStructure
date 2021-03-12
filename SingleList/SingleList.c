@@ -119,16 +119,37 @@ boolean insert_SingleList(singleList NewPointer, int locate, int number) {
 		//				|
 		//				pointer
 		//
-		//
-		//
+		//|||||||||||||||||||||||||||||||||||||||
+		//|||||||||||||||||||||||||||||||||||||||
                 // NewNode0 ---> NewNode      NewNode1
 		// 		    |             ^
                 //                  |             |
                 //                  |             |
-                //                  |------>   pointer
+                //                  ------->   pointer
 		NewNode -> next = pointer -> next;
 		// Point pointer to NewNode
 		pointer -> next = NewNode;
+		return true;
+	}
+}
+
+/**
+ * Delete a data after locate.
+ */
+boolean delete_SingleList(singleList pointer, int locate) {
+	singleList before;
+	singleList NewPointer;
+	before = get_SingleList(pointer, --locate);
+	if (before == NULL) {
+		printf("\033[31m[Error] Node %d is NULL\n\033[37m", locate);
+		return false;
+	} else if (before -> next == NULL) {
+		printf("\033[31m[Error] Node %d is NULL\n\033[37m", locate + 1);
+                return false;
+	} else {
+		NewPointer = before -> next;
+		before -> next = NewPointer -> next;
+		free(NewPointer);
 		return true;
 	}
 }
@@ -139,6 +160,9 @@ void main() {
 	singleList test_second = create_SingleList_Insert_End();
 	print_SingleList(test_second);
 	if (insert_SingleList(test_second, 3, 60)) {
+		print_SingleList(test_second);
+	}
+	if (delete_SingleList(test_second, 3)) {
 		print_SingleList(test_second);
 	}
 }
