@@ -108,7 +108,7 @@ boolean insert_SingleList(singleList NewPointer, int locate, int number) {
 	} else {
 		// Apply for dynamic space
 		NewNode = (node *)malloc(sizeof(node));
-		// Insert number to data
+		// Insert number to data array
 		NewNode -> data = number;
 		// Point the pointer of newnode to the pointer of pointer
 		//
@@ -137,7 +137,9 @@ boolean insert_SingleList(singleList NewPointer, int locate, int number) {
  * Delete a data after locate.
  */
 boolean delete_SingleList(singleList pointer, int locate) {
+	// before node
 	singleList before;
+	// Temp node
 	singleList NewPointer;
 	before = get_SingleList(pointer, --locate);
 	if (before == NULL) {
@@ -147,8 +149,11 @@ boolean delete_SingleList(singleList pointer, int locate) {
 		printf("\033[31m[Error] Node %d is NULL\n\033[37m", locate + 1);
                 return false;
 	} else {
+		// Assigns the [before + 1] node to the temp node.
 		NewPointer = before -> next;
+		// Assigns a temp node to the previous node.
 		before -> next = NewPointer -> next;
+		// Release temp node.
 		free(NewPointer);
 		return true;
 	}
