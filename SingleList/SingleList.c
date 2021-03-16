@@ -156,6 +156,15 @@ boolean delete_SingleList(singleList pointer, int locate) {
 	}
 }
 
+int length_SingleList(singleList pointer) {
+	int length = 0;
+	while (pointer) {
+		length++;
+		pointer = pointer -> next;
+	}
+	return length;
+}
+
 void main() {
 	singleList test_first = create_SingleList_Insert_Head();
 	print_SingleList(test_first);
@@ -167,4 +176,5 @@ void main() {
 	if (delete_SingleList(test_second, 3)) {
 		print_SingleList(test_second);
 	}
+	printf("Length: %d\n", length_SingleList(test_second));
 }
