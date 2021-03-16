@@ -112,22 +112,19 @@ boolean insert_SingleList(singleList NewPointer, int locate, int number) {
 		NewNode -> data = number;
 		// Point the pointer of newnode to the pointer of pointer
 		//
-		//Sketch Map:
-		//
+		// Sketch Map:
 		// NewNode0 ---> NewNode ---> NewNode1
 		//				^
 		//				|
 		//				pointer
-		//
-		//|||||||||||||||||||||||||||||||||||||||
-		//|||||||||||||||||||||||||||||||||||||||
+		NewNode -> next = pointer -> next;
+		// Point pointer to NewNode
+		// Sketch Map
                 // NewNode0 ---> NewNode      NewNode1
-		// 		    |             ^
+                //                  |             ^
                 //                  |             |
                 //                  |             |
                 //                  ------->   pointer
-		NewNode -> next = pointer -> next;
-		// Point pointer to NewNode
 		pointer -> next = NewNode;
 		return true;
 	}
