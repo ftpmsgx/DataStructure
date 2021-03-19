@@ -28,7 +28,7 @@ SqList *initial_SqList() {
 	// 分配空间给顺序表
 	pointer = (SqList *)malloc(sizeof(SqList));
 	// 如果未成功分配空间，则end为-1
-	if (pointer == NULL) {
+	if (pointer != NULL) {
 		// 指针 -> 结构体内变量
 		// “->”为指向运算符
 		pointer -> end = -1;

@@ -15,7 +15,7 @@ SequenList *initial_SequenList() {
 	int i = 0;
 	int number;
 	pointer = (SequenList *)malloc(sizeof(SequenList));
-	if (pointer == NULL) {
+	if (pointer != NULL) {
 		pointer -> last = -1;
 	}
 	printf("These numbers are used to initialize the Order Table.\n");
@@ -32,7 +32,7 @@ SequenList *initial_SequenList() {
 
 void print_SequenList(SequenList *pointer) {
 	printf("Sequen List: \n");
-	for (int i = 0; i < pointer -> last; i++) {
+	for (int i = 0; i <= pointer -> last; i++) {
 		printf("%5d", pointer -> data[i]);
 		if (!((i + 1) % 5)) {
 			printf("\n");
