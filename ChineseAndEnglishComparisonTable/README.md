@@ -3,6 +3,6 @@
 | SequenList | 顺序表   |
 | SingleList | 单向链表 |
 | Work | 课后作业（不含题目） |
-| | |
-| | |
+| SequenStack | 顺序栈 |
+| LinkStack | 链栈 |
 | | |
